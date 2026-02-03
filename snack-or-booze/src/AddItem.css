@@ -15,7 +15,7 @@
 }
 
 .formItems select {
-  width: 100px;
+  width: 200px;
   height: 40px;
 }
 
@@ -38,12 +38,15 @@
   width: 100px;
   height: 35px;
   font-weight: 500;
-  border: 3px solid rgb(0, 106, 255);
+  border: 1px solid transparent;
   border-radius: 5px;
-  background-color: rgb(57, 140, 255);
+  background-color: rgb(0, 189, 32);
+  transition:
+    border ease-out 0.5s,
+    background-color ease-out 0.5s;
 }
 
 .addBtn:hover {
-  background-color: rgb(0, 83, 199);
-  border: 3px solid rgb(0, 48, 116);
+  background-color: rgb(1, 128, 22);
+  border: 2px solid rgb(0, 101, 17);
 }

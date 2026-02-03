@@ -1,23 +1,65 @@
 import "./AddItem.css";
+// import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function AddItem() {
+export default function AddItem({ add, setAddItem, addItem }) {
+  const history = useHistory();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAddItem((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(addItem);
+    add(addItem);
+    history.push(`/${addItem.category}`);
+  };
+
   return (
     <div className="formContainer">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="formItems">
           <div className="inputSection">
-            <select id="category" name="addIem">
-              <option value="food">Food</option>
-              <option value="drink">Drink</option>
+            <select
+              id="category"
+              name="category"
+              value={addItem.category}
+              onChange={handleChange}
+            >
+              <option value="snacks">Snack</option>
+              <option value="drinks">Drink</option>
             </select>
 
-            <input type="text" id="itemId" placeholder="Item ID" />
+            <input
+              type="text"
+              id="itemId"
+              placeholder="Item ID"
+              name="id"
+              onChange={handleChange}
+            />
           </div>
 
           <div className="inputSection">
-            <input type="text" id="name" placeholder="Item Name" />
+            <input
+              type="text"
+              id="name"
+              placeholder="Item Name"
+              name="name"
+              onChange={handleChange}
+            />
 
-            <input type="text" id="serve" placeholder="Serve" />
+            <input
+              type="text"
+              id="serve"
+              placeholder="Serve"
+              name="serve"
+              onChange={handleChange}
+            />
           </div>
 
           <textarea
@@ -25,6 +67,7 @@ export default function AddItem() {
             name="description"
             rows={2}
             placeholder="Description"
+            onChange={handleChange}
           ></textarea>
 
           <textarea
@@ -32,6 +75,7 @@ export default function AddItem() {
             name="recipe"
             rows={3}
             placeholder="Recipe"
+            onChange={handleChange}
           ></textarea>
         </div>
 

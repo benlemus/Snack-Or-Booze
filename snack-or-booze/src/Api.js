@@ -18,6 +18,18 @@ class SnackOrBoozeApi {
     const result = await axios.get(`${BASE_API_URL}/drinks`);
     return result.data;
   }
+
+  static async add(item) {
+    const { id, name, description, recipe } = item;
+    const result = await axios.post(`${BASE_API_URL}/${item.category}`, {
+      id,
+      name,
+      description,
+      recipe,
+    });
+
+    return result ? { added: item } : { error: `could not add => ${item}` };
+  }
 }
 
 export default SnackOrBoozeApi;

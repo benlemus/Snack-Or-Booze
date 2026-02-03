@@ -11,9 +11,23 @@ import Handle404 from "./Handle404";
 import AddItem from "./AddItem";
 
 function App() {
+  const addItemSetUp = {
+    category: "snacks",
+    id: "",
+    name: "",
+    serve: "",
+    description: "",
+    recipe: "",
+  };
+
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [addItem, setAddItem] = useState(addItemSetUp);
+
+  const add = async (item) => {
+    await SnackOrBoozeApi.add(item);
+  };
 
   useEffect(() => {
     async function getSnacks() {
@@ -24,7 +38,7 @@ function App() {
       setIsLoading(false);
     }
     getSnacks();
-  }, []);
+  }, [addItem]);
 
   if (isLoading) {
     return <p>Loading &hellip;</p>;
@@ -55,7 +69,7 @@ function App() {
             </Route>
 
             <Route path="/add">
-              <AddItem />
+              <AddItem add={add} setAddItem={setAddItem} addItem={addItem} />
             </Route>
 
             <Route>
