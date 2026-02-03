@@ -1,5 +1,4 @@
 import "./AddItem.css";
-// import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function AddItem({ add, setAddItem, addItem }) {
